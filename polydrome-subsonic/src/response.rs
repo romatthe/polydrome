@@ -4,21 +4,31 @@ use serde::Serialize;
 #[serde(rename = "subsonic-response")]
 pub struct Response<R: Serialize> {
     #[serde(rename = "@status")]
-    pub status: ResponseStatus,
+    status: ResponseStatus,
     #[serde(rename = "@version")]
-    pub version: String,
+    version: String,
     #[serde(rename = "$value")]
-    pub inner: R
+    inner: R,
+}
+
+impl<R: Serialize> Response<R> {
+    pub fn ok_from(response: R) -> Response<R> {
+        Response {
+            status: ResponseStatus::Ok,
+            version: "1.16.1".to_string(),
+            inner: response,
+        }
+    }
 }
 
 #[derive(Serialize)]
 pub enum ResponseStatus {
     #[serde(rename = "ok")]
-    Ok
+    Ok,
 }
 
 #[derive(Serialize)]
-#[serde(rename = "license   ")]
+#[serde(rename = "license")]
 pub struct GetLicenseResponse<'a> {
     #[serde(rename = "@valid")]
     valid: bool,
@@ -37,5 +47,3 @@ impl Default for GetLicenseResponse<'_> {
         }
     }
 }
-
-

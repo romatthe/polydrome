@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+polydrome-axum-xml = { path = "../polydrome-axum-xml" }
 polydrome-subsonic = { path = "../polydrome-subsonic" }
 
+axum = { workspace = true }
+axum-macros = { workspace = true }
 quick-xml = { workspace = true }
+tokio = { workspace = true }
+serde = { version = "1.0.219", features = ["derive"] }

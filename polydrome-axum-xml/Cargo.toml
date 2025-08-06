@@ -1,0 +1,10 @@
+[package]
+name = "polydrome-axum-xml"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = { workspace = true }
+mime = { workspace = true }
+quick-xml = { workspace = true }
+serde = { workspace = true }
